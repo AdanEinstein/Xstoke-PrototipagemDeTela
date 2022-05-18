@@ -5,7 +5,7 @@ import ButtonTeste from '../components/ButtonTeste'
 
 export default function Home() {
     return (
-        <Layout titulo={'Tela de cadastro de clientes'}>
+        <Layout titulo={'Tela de cadastro de clientes'} titulinho={'CLIENTES'}>
             <header className='bg-primary p-2 d-flex justify-content-center' style={{borderRadius: 5}}>
                 <h1 style={{fontSize: 60}}><i className="bi bi-boxes mx-2"/>Xstoke</h1>
             </header>
