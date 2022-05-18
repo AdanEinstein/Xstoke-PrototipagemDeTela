@@ -1,0 +1,25 @@
+{
+  "name": "xstoke",
+  "version": "1.0.0",
+  "description": "Sistema de estoque com integração dos processos: -> Cadastro de clientes (PJ) -> Estruturação dos produtos (PA e MP) -> Abertura / Lançamento do pedido de venda -> Abertura / Lançamento da ordem de produção -> Entrada por nota fiscal -> Emissão de nota fiscal",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdanEinstein/Xstoke.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdanEinstein/Xstoke/issues"
+  },
+  "homepage": "https://github.com/AdanEinstein/Xstoke#readme",
+  "dependencies": {
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
