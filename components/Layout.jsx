@@ -9,21 +9,23 @@ export default function Layout({ children, titulo, titulinho }) {
 	return (
 		<>
 			<div className="my-3 d-flex justify-content-center">
-                <h1 className="fw-bold d-md-block d-none">
+                <h1 className="fw-bold text-white d-md-block d-none">
                     {titulo}
                 </h1>
-                <h1 className="fw-bold d-md-none d-block">
+                <h1 className="fw-bold text-white d-md-none d-block">
                     {titulinho}
                 </h1>
             </div>
-			<div className="row w-100">
-				<div className="col-lg-3"></div>
-				<div className="col-lg-6 col-md-12">
-					<div className="mx-2" style={styles.divExterna}>
-						{children}
+			<div className="container">
+				<div className="row">
+					<div className="col-lg-1"></div>
+					<div className="col-lg-10 col-12">
+						<div className="mx-1" style={styles.divExterna}>
+							{children}
+						</div>
 					</div>
+					<div className="col-lg-1"></div>
 				</div>
-				<div className="col-lg-3"></div>
 			</div>
 		</>
 	);
