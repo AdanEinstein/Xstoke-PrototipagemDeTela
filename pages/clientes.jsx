@@ -3,14 +3,11 @@ import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
-import Nav from "../components/Nav";
+import Nav from "../components/personalizados/Nav";
+import useLinks from "../providers/LinksProvider";
 
 export default function Cliente() {
-	const links = [
-		{ value: "Home" },
-		{ value: "Cadastro Clientes", active: true },
-		{ value: "Cadastro Produtos" },
-	];
+	const {setLinks} = useLinks()
 
 	return (
 		<Layout titulo={"Tela de cadastro de clientes"} titulinho={"Clientes"}>
@@ -20,10 +17,10 @@ export default function Cliente() {
 					Xstoke
 				</h1>
 			</Header>
-			<Nav links={links}>
-				<h1 className="text-white display-6 text-center">
+			<Nav atualPage={'Cadastro Clientes'}>
+				<h2 className="text-white text-center fw-light fs-3">
 					Cadastre seus clientes aqui!
-				</h1>
+				</h2>
                 <hr className="text-white"/>
 				<p className="text-white">
 					Informe os dados cadastrais do cliente:
@@ -52,7 +49,7 @@ export default function Cliente() {
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"produtos"}
+				link={"/produtos"}
 			>
 				Avançar
 			</Button>

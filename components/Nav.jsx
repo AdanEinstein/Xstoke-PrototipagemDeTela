@@ -7,7 +7,7 @@ export default function Nav({ children, links }) {
 	return (
 		<div className="container-fluid">
 			<div className="row row-cols-md-2">
-				<nav className="navbar col-md-4 align-items-md-start" style={{borderBottomLeftRadius: 5, background: "#FFF"}}>
+				<nav className="navbar col-md-4 align-items-md-start" style={{borderBottomLeftRadius: 5, background: "#DDD"}}>
 					<ul className="nav nav-pills nav-fill flex-md-column w-100 p-2 flex-row">
 						{links.map((link) => {
 							return (

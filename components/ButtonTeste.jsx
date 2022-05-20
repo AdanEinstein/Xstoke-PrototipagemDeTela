@@ -1,4 +1,4 @@
-export default function ButtonTeste({children, alerta, classe}){
+export default function ButtonTeste({children, alerta, classe, ...rest}){
     function handleClick(){
         alert(`${alerta}`)
     }

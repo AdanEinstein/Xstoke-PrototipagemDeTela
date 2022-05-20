@@ -1,16 +1,11 @@
 import Layout from "../components/Layout";
-import Input from "../components/Input";
 import Button from "../components/Button";
-import ButtonTeste from "../components/ButtonTeste";
-import Nav from "../components/Nav";
+import Nav from "../components/personalizados/Nav";
 import Header from "../components/Header";
+import useLinks from "../providers/LinksProvider";
 
 export default function Home() {
-	const links = [
-		{ value: "Home", active: true },
-		{ value: "Cadastro Clientes" },
-		{ value: "Cadastro Produtos" },
-	];
+	const {setLinks} = useLinks()
 
 	return (
 		<Layout titulo={"Tela Inicial"} titulinho={"Home"}>
@@ -20,11 +15,11 @@ export default function Home() {
 					Xstoke
 				</h1>
 			</Header>
-			<Nav links={links}>
-				<h2 className="text-white display-6 d-none d-md-block">
+			<Nav atualPage={'Home'}>
+				<h2 className="text-white d-none d-md-block fw-light">
 					Sistema Integrado de Gerenciamento de Estoque
 				</h2>
-				<h2 className="text-white display-6 d-block d-md-none">
+				<h2 className="text-white d-block d-md-none fw-light">
 					Gerenciamento de Estoque
 				</h2>
 				<hr className="text-white" />

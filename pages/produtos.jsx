@@ -4,29 +4,38 @@ import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
-import Nav from "../components/Nav";
-import Select from "../components/personalizados/Select";
+import Nav from "../components/personalizados/Nav";
+import SelectPer from "../components/personalizados/Select";
+import Select from "../components/Select";
 import TipoProdutoContext from "../contexts/TipoProdutoContext";
+import useLinks from "../providers/LinksProvider";
 
 export default function Produto() {
 	const [isPA, setIsPA] = useState(false);
-    const [selects, setSelects] = useState(1)
-	const links = [
-		{ value: "Home" },
-		{ value: "Cadastro Clientes" },
-		{ value: "Cadastro Produtos", active: true },
-	];
+	const [produtos, setProdutos] = useState([]);
+	const { setLinks } = useLinks();
 
 	const options = [{ value: "MP" }, { value: "PA" }];
 
 	const mps = [
-		{ value: JSON.stringify({ descricao: "Produto 1", preco: 15.5 }) },
-		{ value: JSON.stringify({ descricao: "Produto 2", preco: 25.5 }) },
+		{ value: JSON.stringify({ descricao: "Materia Prima 1", preco: 15.5 }) },
+		{ value: JSON.stringify({ descricao: "Materia Prima 2", preco: 25.5 }) },
 	];
 
-    function addEstrutura(){
-        setSelects(selects + 1)
-    }
+	function addEstrutura() {
+		if (produtos.length === 0) {
+			setProdutos([{ id: 0 }]);
+		} else {
+			const lastProduto = produtos.length;
+			setProdutos((oldProdutos) => [...oldProdutos, { id: lastProduto }]);
+		}
+	}
+
+	function deleteEstrutura(idProduto) {
+		setProdutos((oldProdutos) => {
+			return oldProdutos.filter((p) => p.id !== idProduto);
+		});
+	}
 
 	return (
 		<Layout titulo={"Tela de cadastro de produtos"} titulinho={"Produtos"}>
@@ -36,32 +45,73 @@ export default function Produto() {
 					Xstoke
 				</h1>
 			</Header>
-			<Nav links={links}>
+			<Nav atualPage={"Cadastro Produtos"}>
 				<TipoProdutoContext.Provider value={{ setIsPA }}>
-					<h1 className="text-white display-6 text-center">
+					<h2 className="text-white text-center fw-light fs-3">
 						Cadastre seus produtos aqui!
-					</h1>
+					</h2>
 					<hr className="text-white" />
-					<Select
+					<SelectPer
 						label="Tipo do produto"
 						inicial="Selecione o tipo MP ou PA"
 						options={options}
-					></Select>
+					></SelectPer>
 					<Input label="Descrição" campo="descricao"></Input>
 					<Input label="Preço" campo="preco"></Input>
 					{isPA && (
 						<>
 							<hr className="text-white" />
-							<div className="d-flex justify-content-end">
-								<button className="btn btn-success mb-2" onClick={addEstrutura}>
-									Adicionar<i className="bi-plus"></i>
+							<Input
+								label="Tempo estimado para produção"
+								campo="tempo"
+								type={"time"}
+							></Input>
+							<div className="d-flex justify-content-between align-items-baseline mb-3">
+								<p className="text-white fw-light fs-5">
+									Estruturação do PA:
+								</p>
+								<button
+									className="btn btn-success"
+									onClick={addEstrutura}
+								>
+									Adicionar{" "}
+									<i className="bi-check-circle-fill"></i>
 								</button>
 							</div>
-							<Select
-								label="Estruturação do PA"
-								inicial="Componha o seu PA aqui"
-								options={mps}
-							></Select>
+							{produtos.map((produto) => {
+								return (
+									<div
+										key={produto?.id}
+										className="d-flex justify-content-between align-items-center position-relative"
+									>
+										<button
+											className="position-absolute btn btn-danger"
+											style={{
+												top: -10,
+												right: -10,
+												zIndex: 10,
+											}}
+											onClick={() =>
+												deleteEstrutura(produto?.id)
+											}
+										>
+											<i className="bi-trash-fill"></i>
+										</button>
+										<Select
+											label="Matéria Prima"
+											inicial="Componha o seu PA aqui"
+											options={mps}
+											classe="w-75"
+										></Select>
+										<Input
+											style={{ marginLeft: 5 }}
+											label="Quantidade"
+											campo={"quantidade"}
+											classe="w-25"
+										></Input>
+									</div>
+								);
+							})}
 						</>
 					)}
 					<div className="d-flex justify-content-between">
@@ -83,14 +133,14 @@ export default function Produto() {
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"#"}
+				link={"/pedido_venda"}
 			>
 				Avançar
 			</Button>
 			<Button
 				style={{ top: 10, left: 10 }}
 				classe={"btn-danger"}
-				link={"clientes"}
+				link={"/clientes"}
 			>
 				Voltar
 			</Button>

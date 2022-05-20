@@ -1,11 +1,11 @@
-export default function Select({ label, inicial, options }) {
+export default function Select({ label, inicial, options, classe }) {
 	return (
-		<div className="form-floating mb-4">
+		<div className={`form-floating mb-4 ${classe}`}>
 			<select
 				className="form-select"
 				id="Select"
 			>
-				<option selected>{inicial}</option>
+				<option defaultValue>{inicial}</option>
 				{options.map((option) => {
 					return (
 						<option key={option.value} value={option.value}>

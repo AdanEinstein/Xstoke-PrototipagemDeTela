@@ -10,7 +10,7 @@ export default function Select({ label, inicial, options }) {
 				id="Select"
 				onChange={e => e.target.value === 'PA' ? setIsPA(true) : setIsPA(false) }
 			>
-				<option selected>{inicial}</option>
+				<option defaultValue>{inicial}</option>
 				{options.map((option) => {
 					return (
 						<option key={option.value} value={option.value}>
