@@ -18,7 +18,7 @@ export default function ListaProdutos(props) {
 				produtos.pas.map((pa) => {
 					return (
 						<tr key={pa.id}>
-							<th scope="row">{pa.id}</th>
+							<th className="d-md-table-cell d-none" scope="row">{pa.id}</th>
 							<td>{pa.descricao}</td>
 							<td>
 								{pa.preco.toLocaleString("pt", {
@@ -52,7 +52,7 @@ export default function ListaProdutos(props) {
 				produtos.mps.map((mp) => {
 					return (
 						<tr key={mp.id}>
-							<th scope="row">{mp.id}</th>
+							<th className="d-md-table-cell d-none" scope="row">{mp.id}</th>
 							<td>{mp.descricao}</td>
 							<td>
 								{mp.preco.toLocaleString("pt", {
@@ -97,15 +97,15 @@ export default function ListaProdutos(props) {
 				</h1>
 			</Header>
 			<Nav atualPage={"Lista Produtos"}>
-				<div className="container d-flex justify-content-between mb-3">
+				<div className="btn-group container d-flex justify-content-between my-4">
 					<button
-						className="btn btn-lg btn-secondary w-50 mx-1"
+						className="btn btn-lg btn-outline-warning w-50 mx-1"
 						onClick={handleToggle}
 					>
 						PAS
 					</button>
 					<button
-						className="btn btn-lg btn-secondary w-50 mx-1"
+						className="btn btn-lg btn-outline-warning w-50 mx-1"
 						onClick={handleToggle}
 					>
 						MPS
@@ -124,7 +124,7 @@ export default function ListaProdutos(props) {
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"#"}
+				link={"/lista_clientes"}
 			>
 				Avançar
 			</Button>

@@ -22,7 +22,7 @@ function listaProdutosMiddleware(request, response) {
 		});
 	}
 
-    response.setHeader('Cache-Control', 's-maxage=10', 'stale-while-revalidate')
+    response.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate')
 
     response.json(listaProdutos);
 }

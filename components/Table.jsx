@@ -5,7 +5,7 @@ export default function Table({cabecalho, children, classe}){
                 <tr>
                     {cabecalho.map(th => {
                         return (
-                            <th key={th} scope="col">{th}</th>
+                            <th className="d-md-table-cell d-none" key={th} scope="col">{th}</th>
                         )
                     })}
                 </tr>

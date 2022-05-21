@@ -6,6 +6,7 @@ const LinksContext = createContext([
 	{ value: "Cadastro Produtos" },
 	{ value: "Pedido Venda" },
 	{ value: "Lista Produtos" },
+	{ value: "Lista Clientes" },
 ]);
 
 export default function useLinks() { 
