@@ -132,7 +132,7 @@ export default function PedidoVenda() {
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"#"}
+				link={"/lista_produtos"}
 			>
 				Avançar
 			</Button>
