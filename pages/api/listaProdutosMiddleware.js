@@ -4,10 +4,10 @@ function listaProdutosMiddleware(request, response) {
 		mps: [],
 	};
 
-	for (let index = 0; index < 100; index++) {
+	for (let index = 0; index < 12; index++) {
 		listaProdutos.pas.push({
 			id: index,
-			descricao: `Produto ${index}`,
+			descricao: `Produto Acabado ${index}`,
 			preco: index * 0.6,
 			mps: [
 				{
@@ -17,7 +17,7 @@ function listaProdutosMiddleware(request, response) {
 		});
 		listaProdutos.mps.push({
 			id: index,
-			descricao: `Produto ${index}`,
+			descricao: `Matéria Prima ${index}`,
 			preco: index * 0.2,
 		});
 	}
