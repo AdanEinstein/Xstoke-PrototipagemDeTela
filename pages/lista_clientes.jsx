@@ -4,45 +4,50 @@ import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
-import Nav from "../components/personalizados/Nav";
+import NavLarge from "../components/NavLarge"
 import Table from "../components/Table";
+import useLinks from "../providers/LinksProvider";
 
 export default function ListaClientes(props) {
-    // const [clientes, setClientes] = useState(props.listaClientesJson)
+	const [clientes, setClientes] = useState(props.listaClientesJson);
+    const {links} = useLinks()
 
-    // const cabecalho = ['ID', 'CNPJ', 'Razão Social', 'Logradouro', 'Número', 'Cidade', 'UF']
+	const cabecalho = [
+		"CNPJ",
+		"Razão Social",
+		"Logradouro",
+		"Cidade",
+        "Ações"
+	];
 
-    // const Clientes = (
-	// 	<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
-	// 		{clientes.map(cliente => {
-	// 				return (
-	// 					<tr key={cliente.id}>
-	// 						<th scope="row">{cliente.id}</th>
-    //                         <td>{cliente.phone}</td>
-    //                         <td>{cliente.company.name}</td>
-    //                         <td>{cliente.address.street}</td>
-    //                         <td>{cliente.address.suite.replace('\D', '')}</td>
-    //                         <td>{cliente.address.city}</td>
-    //                         <td>SP</td>
-	// 						<td>
-	// 							<ButtonTeste
-	// 								classe={"btn btn-sm btn-warning mx-1"}
-	// 								alerta="Editando"
-	// 							>
-	// 								<i className="bi-pencil-square"></i>
-	// 							</ButtonTeste>
-	// 							<ButtonTeste
-	// 								classe={"btn btn-sm btn-danger"}
-	// 								alerta="Deletando"
-	// 							>
-	// 								<i className="bi-trash3-fill"></i>
-	// 							</ButtonTeste>
-	// 						</td>
-	// 					</tr>
-	// 				);
-	// 			})}
-	// 	</Table>
-	// );
+	const Clientes = (
+		<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
+			{clientes.map((cliente) => {
+				return (
+					<tr key={cliente.id}>
+						<td className="text-nowrap">{cliente.phone}</td>
+						<td>{cliente.company.name}</td>
+						<td className="d-lg-table-cell d-none" >{cliente.address.street}</td>
+						<td className="d-md-table-cell d-none" >{cliente.address.city}</td>
+						<td>
+							<ButtonTeste
+								classe={"btn btn-sm btn-warning mx-1"}
+								alerta="Editando"
+							>
+								<i className="bi-pencil-square"></i>
+							</ButtonTeste>
+							<ButtonTeste
+								classe={"btn btn-sm btn-danger"}
+								alerta="Deletando"
+							>
+								<i className="bi-trash3-fill"></i>
+							</ButtonTeste>
+						</td>
+					</tr>
+				);
+			})}
+		</Table>
+	);
 
 	return (
 		<Layout
@@ -55,12 +60,12 @@ export default function ListaClientes(props) {
 					Xstoke
 				</h1>
 			</Header>
-			<Nav atualPage={"Lista Clientes"}>
+			<NavLarge atualPage={'Lista Clientes'}/>
 				<h2 className="text-white text-center fw-light fs-3">
-					Lista de Clientes
+					Lista dos clientes cadastrados
 				</h2>
 				<hr className="text-white" />
-				<div className="d-flex justify-content-between align-items-baseline">
+				<div className="d-flex justify-content-between align-items-baseline mx-2">
 					<Input
 						label={"Pesquise por Nome ou CNPJ"}
 						campo={"cliente"}
@@ -75,7 +80,7 @@ export default function ListaClientes(props) {
 						<i className="bi-search"></i>
 					</ButtonTeste>
 				</div>
-			</Nav>
+				{Clientes}
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
@@ -94,14 +99,16 @@ export default function ListaClientes(props) {
 	);
 }
 
-// export async function getStaticProps(){
-//     const listaClientes = await fetch('https://xstoke.vercel.app/api/listaClientesMiddleware')
-//     const listaClientesJson = await listaClientes.json()
+export async function getStaticProps() {
+	const listaClientes = await fetch(
+		"https://xstoke.vercel.app/api/listaClientesMiddleware"
+	);
+	const listaClientesJson = await listaClientes.json();
 
-//     return {
-//         props: {
-//             listaClientesJson
-//         },
-//         revalidate: 1
-//     }
-// }
+	return {
+		props: {
+			listaClientesJson,
+		},
+		revalidate: 1,
+	};
+}
