@@ -15,8 +15,8 @@ export default function NotaFiscal(props) {
 			{pedidos.map((pedido) => {
 				return (
 					<tr key={pedido.id}>
-						<td>{`Cliente ${pedido.cliente}`}</td>
-						<td>
+						<td className="text-center">{`Cliente ${pedido.cliente}`}</td>
+						<td className="text-center">
 							{pedido.pas
 								.reduce((total, atual) => {
 									return (total +=
@@ -28,7 +28,7 @@ export default function NotaFiscal(props) {
 									currency: "BRL",
 								})}
 						</td>
-						<td>
+						<td className="text-center">
 							{pedido.cliente < 25 ? (
 								<ButtonTeste
 									classe={"btn btn-sm btn-danger w-100 mx-1"}

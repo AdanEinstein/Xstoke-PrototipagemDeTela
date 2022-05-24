@@ -1,7 +1,7 @@
 function ListaPedidosVendasMiddleware(request, response){
     const pedidos = []
 
-    for(let i = 0; i < 12; i++){
+    for(let i = 1; i < 13; i++){
         let ale = Math.floor(Math.random() * 50)
         pedidos.push({
             id: i,

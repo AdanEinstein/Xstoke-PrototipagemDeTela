@@ -4,7 +4,7 @@ function listaProdutosMiddleware(request, response) {
 		mps: [],
 	};
 
-	for (let index = 0; index < 12; index++) {
+	for (let index = 1; index < 13; index++) {
 		let ale = Math.floor(Math.random() * 50)
 		listaProdutos.pas.push({
 			id: index,

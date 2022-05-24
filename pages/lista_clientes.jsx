@@ -22,14 +22,14 @@ export default function ListaClientes(props) {
 						<td className="text-nowrap">
 							{cliente.address.zipcode}
 						</td>
-						<td>{cliente.company.name}</td>
-						<td className="d-md-table-cell d-none">
+						<td className="text-center">{cliente.company.name}</td>
+						<td className="text-center d-md-table-cell d-none">
 							{cliente.address.street}
 						</td>
-						<td className="d-md-table-cell d-none">
+						<td className="text-center d-md-table-cell d-none">
 							{cliente.address.city}
 						</td>
-						<td>
+						<td className="text-center">
 							<ButtonTeste
 								classe={"btn btn-sm btn-warning mx-1"}
 								alerta="Editando"

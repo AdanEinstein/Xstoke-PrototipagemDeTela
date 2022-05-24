@@ -10,7 +10,7 @@ export default function ListaProdutos(props) {
 	const [produtos, setProdutos] = useState(props.listaProdutosJson);
 	const [alternar, setAlternar] = useState();
 
-	const cabecalho = ["ID", "Descrição", "Preço", "Ações"];
+	const cabecalho = ["ID", "Descrição", "Preço", "Imposto", "Ações"];
 
 	const PAS = (
 		<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
@@ -18,16 +18,23 @@ export default function ListaProdutos(props) {
 				produtos.pas.map((pa) => {
 					return (
 						<tr key={pa.id}>
-							<th className="d-md-table-cell d-none" scope="row">{pa.id}</th>
-							<td>{pa.descricao}</td>
-							<td>
+							<th className="text-center d-md-table-cell d-none" scope="row">{pa.id}</th>
+							<td className="text-center">{pa.descricao}</td>
+							<td className="text-center">
 								{pa.preco.toLocaleString("pt", {
 									minimumFractionDigits: 2,
 									style: "currency",
 									currency: "BRL",
 								})}
 							</td>
-							<td>
+							<td className="text-center">
+								{pa.imposto.toLocaleString("pt", {
+									minimumFractionDigits: 2,
+									style: "currency",
+									currency: "BRL",
+								})}
+							</td>
+							<td className="text-center text-nowrap">
 								<ButtonTeste
 									classe={"btn btn-sm btn-warning mx-1"}
 									alerta="Editando"
@@ -52,16 +59,23 @@ export default function ListaProdutos(props) {
 				produtos.mps.map((mp) => {
 					return (
 						<tr key={mp.id}>
-							<th className="d-md-table-cell d-none" scope="row">{mp.id}</th>
-							<td>{mp.descricao}</td>
-							<td>
+							<th className="text-center d-md-table-cell d-none" scope="row">{mp.id}</th>
+							<td className="text-center">{mp.descricao}</td>
+							<td className="text-center">
 								{mp.preco.toLocaleString("pt", {
 									minimumFractionDigits: 2,
 									style: "currency",
 									currency: "BRL",
 								})}
 							</td>
-                            <td>
+							<td className="text-center">
+								{mp.imposto.toLocaleString("pt", {
+									minimumFractionDigits: 2,
+									style: "currency",
+									currency: "BRL",
+								})}
+							</td>
+                            <td className="text-center text-nowrap">
 								<ButtonTeste
 									classe={"btn btn-sm btn-warning mx-1"}
 									alerta="Editando"
