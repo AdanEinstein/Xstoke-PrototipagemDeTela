@@ -18,7 +18,12 @@ export default function ListaProdutos(props) {
 				produtos.pas.map((pa) => {
 					return (
 						<tr key={pa.id}>
-							<th className="text-center d-md-table-cell d-none" scope="row">{pa.id}</th>
+							<th
+								className="text-center d-md-table-cell d-none"
+								scope="row"
+							>
+								{pa.id}
+							</th>
 							<td className="text-center">{pa.descricao}</td>
 							<td className="text-center">
 								{pa.preco.toLocaleString("pt", {
@@ -59,7 +64,12 @@ export default function ListaProdutos(props) {
 				produtos.mps.map((mp) => {
 					return (
 						<tr key={mp.id}>
-							<th className="text-center d-md-table-cell d-none" scope="row">{mp.id}</th>
+							<th
+								className="text-center d-md-table-cell d-none"
+								scope="row"
+							>
+								{mp.id}
+							</th>
 							<td className="text-center">{mp.descricao}</td>
 							<td className="text-center">
 								{mp.preco.toLocaleString("pt", {
@@ -75,7 +85,7 @@ export default function ListaProdutos(props) {
 									currency: "BRL",
 								})}
 							</td>
-                            <td className="text-center text-nowrap">
+							<td className="text-center text-nowrap">
 								<ButtonTeste
 									classe={"btn btn-sm btn-warning mx-1"}
 									alerta="Editando"
@@ -126,13 +136,23 @@ export default function ListaProdutos(props) {
 					</button>
 				</div>
 				{alternar === undefined ? (
-					<h2 className="text-white text-center fw-light fs-4">
+					<h2 className="text-white text-center fw-light mb-3 fs-4">
 						Selecione o tipo de produto para verificar
 					</h2>
 				) : alternar ? (
-					PAS
+					<>
+						<h2 className="text-white fw-bold text-center fw-light mb-3 fs-4">
+							Produtos acabados
+						</h2>
+						{PAS}
+					</>
 				) : (
-					MPS
+					<>
+						<h2 className="text-white fw-bold text-center fw-light mb-3 fs-4">
+							Matérias primas
+						</h2>
+						{MPS}
+					</>
 				)}
 			</Nav>
 			<Button
