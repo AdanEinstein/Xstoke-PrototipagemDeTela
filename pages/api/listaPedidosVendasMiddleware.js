@@ -1,4 +1,4 @@
-async function ListaPedidosVendasMiddleware(request, response){
+function ListaPedidosVendasMiddleware(request, response){
     const pedidos = []
 
     for(let i = 0; i < 12; i++){
