@@ -86,10 +86,10 @@ export default function NotaFiscal(props) {
 			</Nav>
 			<Button
 				style={{ top: 10, right: 10 }}
-				classe={"btn-success"}
-				link={"#"}
+				classe={"btn-warning"}
+				link={"/"}
 			>
-				Avançar
+				Retornar
 			</Button>
 			<Button
 				style={{ top: 10, left: 10 }}
