@@ -5,20 +5,23 @@ function listaProdutosMiddleware(request, response) {
 	};
 
 	for (let index = 0; index < 12; index++) {
+		let ale = Math.floor(Math.random() * 50)
 		listaProdutos.pas.push({
 			id: index,
 			descricao: `Produto Acabado ${index}`,
-			preco: index * 0.6,
+			preco: ale * 0.9,
+			imposto: ale * 0.1,
 			mps: [
 				{
-					id: index,
+					id: ale,
 				},
 			],
 		});
 		listaProdutos.mps.push({
 			id: index,
 			descricao: `Matéria Prima ${index}`,
-			preco: index * 0.2,
+			preco: ale * 0.7,
+			imposto: ale * 0.3
 		});
 	}
 

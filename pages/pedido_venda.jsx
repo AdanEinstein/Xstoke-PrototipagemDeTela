@@ -124,7 +124,7 @@ export default function PedidoVenda() {
 						alerta={"Cadastrando Pedido"}
 						classe={"btn-primary w-50 mx-1"}
 					>
-						Cadastrar
+						Enviar
 					</ButtonTeste>
 				</div>
 				) : null}

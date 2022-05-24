@@ -18,8 +18,18 @@ export default function Produto() {
 	const options = [{ value: "MP" }, { value: "PA" }];
 
 	const mps = [
-		{ value: JSON.stringify({ descricao: "Materia Prima 1", preco: 15.5 }) },
-		{ value: JSON.stringify({ descricao: "Materia Prima 2", preco: 25.5 }) },
+		{
+			value: JSON.stringify({
+				descricao: "Materia Prima 1",
+				preco: 15.5,
+			}),
+		},
+		{
+			value: JSON.stringify({
+				descricao: "Materia Prima 2",
+				preco: 25.5,
+			}),
+		},
 	];
 
 	function addEstrutura() {
@@ -57,7 +67,17 @@ export default function Produto() {
 						options={options}
 					></SelectPer>
 					<Input label="Descrição" campo="descricao"></Input>
-					<Input label="Preço" campo="preco"></Input>
+					{isPA ? (
+						<>
+							<Input label="Preço Médio R$" campo="preco"></Input>
+							<Input label="Imposto repassado R$" campo="imposto"></Input>
+						</>
+					) : (
+						<>
+							<Input label="Valor do custo R$" campo="preco"></Input>
+							<Input label="Imposto pago R$" campo="imposto"></Input>
+						</>
+					)}
 					{isPA && (
 						<>
 							<hr className="text-white" />

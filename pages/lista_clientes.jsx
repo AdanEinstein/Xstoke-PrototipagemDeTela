@@ -4,31 +4,31 @@ import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
-import NavLarge from "../components/NavLarge"
+import Nav from "../components/personalizados/Nav";
 import Table from "../components/Table";
 import useLinks from "../providers/LinksProvider";
 
 export default function ListaClientes(props) {
 	const [clientes, setClientes] = useState(props.listaClientesJson);
-    const {links} = useLinks()
+	const { links } = useLinks();
 
-	const cabecalho = [
-		"CNPJ",
-		"Razão Social",
-		"Logradouro",
-		"Cidade",
-        "Ações"
-	];
+	const cabecalho = ["CNPJ", "Razão Social", "Logradouro", "Cidade", "Ações"];
 
 	const Clientes = (
 		<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
 			{clientes.map((cliente) => {
 				return (
 					<tr key={cliente.id}>
-						<td className="text-nowrap">{cliente.phone}</td>
+						<td className="text-nowrap">
+							{cliente.address.zipcode}
+						</td>
 						<td>{cliente.company.name}</td>
-						<td className="d-lg-table-cell d-none" >{cliente.address.street}</td>
-						<td className="d-md-table-cell d-none" >{cliente.address.city}</td>
+						<td className="d-lg-table-cell d-none">
+							{cliente.address.street}
+						</td>
+						<td className="d-md-table-cell d-none">
+							{cliente.address.city}
+						</td>
 						<td>
 							<ButtonTeste
 								classe={"btn btn-sm btn-warning mx-1"}
@@ -60,7 +60,8 @@ export default function ListaClientes(props) {
 					Xstoke
 				</h1>
 			</Header>
-			<NavLarge atualPage={'Lista Clientes'}/>
+			<Nav atualPage={"Lista Clientes"} />
+			<div className="container mt-5">
 				<h2 className="text-white text-center fw-light fs-3">
 					Lista dos clientes cadastrados
 				</h2>
@@ -81,10 +82,11 @@ export default function ListaClientes(props) {
 					</ButtonTeste>
 				</div>
 				{Clientes}
+			</div>
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"#"}
+				link={"/nota_fiscal"}
 			>
 				Avançar
 			</Button>

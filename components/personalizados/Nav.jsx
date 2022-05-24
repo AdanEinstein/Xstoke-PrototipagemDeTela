@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import useLinks from "../../providers/LinksProvider";
 
 export default function Nav({ children, atualPage }) {
 	const { links, setLinks } = useLinks();
+	const [open, setOpen] = useState(false);
 
 	function handleActive(event) {
 		event.currentTarget.classList.toggle("active");
@@ -18,20 +20,16 @@ export default function Nav({ children, atualPage }) {
     }, [])
 
 	return (
-		<div className="container-fluid">
-			<div className="row row-cols-md-2">
+		<div className={`container-fluid ${children ? "" : 'position-relative'}`}>
+			<div className={`row ${children ? "row-cols-md-2" : ''}`}>
 				<nav
-					className="navbar col-md-4 align-items-md-start"
-					style={{ borderBottomLeftRadius: 5, background: "#FFF" }}
+					className={`navbar ${children ? 'col-md-4' : 'position-absolute'} align-items-md-start`} style={children ? { borderBottomLeftRadius: 5, background: "#FFF" } : {zIndex: 10, borderBottomLeftRadius: 5, background: "#FFF"}}
 				>
 					<div className="container">
-						<div className="d-flex justify-content-center btn btn-primary w-100 align-items-center d-md-none d-block">
-							{atualPage}
+						<div className="d-flex justify-content-center btn btn-primary w-100 align-items-center d-block" onClick={() => setOpen(!open)}>
+							Menu <i className="bi-list"></i> 
 						</div>
-						<p className="d-flex justify-content-center btn btn-primary w-100 d-md-block d-none">
-						Menu <i className="bi-list"></i> 
-						</p>
-						<ul className="nav nav-pills nav-fill flex-md-column w-100 p-2 d-md-block d-none"
+						<ul className={`nav nav-pills nav-fill flex-md-column w-100 mt-2 p-2 ${children ? open ? 'd-block' : 'd-md-block d-none' : open ? 'd-block' : 'd-none'}`}
 						style={{borderRadius: 5, background: '#222'}}>
 							{links.map(link => {
 								return (

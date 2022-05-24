@@ -81,8 +81,8 @@ export default function ListaProdutos(props) {
 		</Table>
 	);
 
-	function handleToggle() {
-		setAlternar(!alternar);
+	function handleToggle(valor) {
+		setAlternar(valor);
 	}
 
 	return (
@@ -100,13 +100,13 @@ export default function ListaProdutos(props) {
 				<div className="btn-group container d-flex justify-content-between my-4">
 					<button
 						className="btn btn-lg btn-outline-warning w-50 mx-1"
-						onClick={handleToggle}
+						onClick={() => handleToggle(true)}
 					>
 						PAS
 					</button>
 					<button
 						className="btn btn-lg btn-outline-warning w-50 mx-1"
-						onClick={handleToggle}
+						onClick={() => handleToggle(false)}
 					>
 						MPS
 					</button>
