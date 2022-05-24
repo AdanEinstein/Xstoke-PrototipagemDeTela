@@ -23,7 +23,7 @@ export default function ListaClientes(props) {
 							{cliente.address.zipcode}
 						</td>
 						<td>{cliente.company.name}</td>
-						<td className="d-lg-table-cell d-none">
+						<td className="d-md-table-cell d-none">
 							{cliente.address.street}
 						</td>
 						<td className="d-md-table-cell d-none">

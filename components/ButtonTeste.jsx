@@ -1,6 +1,6 @@
 export default function ButtonTeste({children, alerta, classe, ...rest}){
     function handleClick(){
-        alert(`${alerta}`)
+        alerta ? alert(`${alerta}`) : null
     }
 
     return (

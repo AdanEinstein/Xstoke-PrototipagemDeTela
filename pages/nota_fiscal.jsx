@@ -3,46 +3,52 @@ import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
 import Nav from "../components/personalizados/Nav";
-import Input from "../components/Input"
+import Input from "../components/Input";
+import Table from "../components/Table";
 
-export default function NotaFiscal() {
-	// const pedidos = props.pedidos
-	const cabecalho = ["CNPJ", "Razão Social", "Logradouro", "Cidade", "Ações"];
+export default function NotaFiscal(props) {
+	const pedidos = props.pedidosJson;
+	const cabecalho = ["Cliente", "Preço", "Status"];
 
-	// const Pedidos = (
-	// 	<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
-	// 		{pedidos.map((pedido) => {
-	// 			return (
-	// 				<tr key={pedido.id}>
-	// 					<td className="text-nowrap">
-	// 						{pedido}
-	// 					</td>
-	// 					<td>{pedido}</td>
-	// 					<td className="d-lg-table-cell d-none">
-	// 						{pedido}
-	// 					</td>
-	// 					<td className="d-md-table-cell d-none">
-	// 						{pedido}
-	// 					</td>
-	// 					<td>
-	// 						<ButtonTeste
-	// 							classe={"btn btn-sm btn-warning mx-1"}
-	// 							alerta="Editando"
-	// 						>
-	// 							<i className="bi-pencil-square"></i>
-	// 						</ButtonTeste>
-	// 						<ButtonTeste
-	// 							classe={"btn btn-sm btn-danger"}
-	// 							alerta="Deletando"
-	// 						>
-	// 							<i className="bi-trash3-fill"></i>
-	// 						</ButtonTeste>
-	// 					</td>
-	// 				</tr>
-	// 			);
-	// 		})}
-	// 	</Table>
-	// );
+	const Pedidos = (
+		<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
+			{pedidos.map((pedido) => {
+				return (
+					<tr key={pedido.id}>
+						<td>{`Cliente ${pedido.cliente}`}</td>
+						<td>
+							{pedido.pas
+								.reduce((total, atual) => {
+									return (total +=
+										atual.id + atual.quantidade * 5.6);
+								}, 0)
+								.toLocaleString("pt", {
+									minimumFractionDigits: 2,
+									style: "currency",
+									currency: "BRL",
+								})}
+						</td>
+						<td>
+							{pedido.cliente < 25 ? (
+								<ButtonTeste
+									classe={"btn btn-sm btn-danger w-100 mx-1"}
+									alerta="Emitindo nota fiscal"
+								>
+									Emitir <i className="bi-info-circle"></i>
+								</ButtonTeste>
+							) : (
+								<ButtonTeste
+									classe={"btn btn-sm btn-primary w-100 mx-1"}
+								>
+									Emitida <i className="bi-check-circle-fill"></i>
+								</ButtonTeste>
+							)}
+						</td>
+					</tr>
+				);
+			})}
+		</Table>
+	);
 	return (
 		<Layout
 			titulo="Tela para Emissão de Nota Fiscal"
@@ -54,8 +60,8 @@ export default function NotaFiscal() {
 					Xstoke
 				</h1>
 			</Header>
-			<Nav atualPage="Nota Fiscal"/>
-			<div className="container mt-5">
+			<Nav atualPage="Nota Fiscal" >
+			<div className="container">
 				<h2 className="text-white text-center fw-light fs-3">
 					Lista de pedidos de venda
 				</h2>
@@ -75,9 +81,10 @@ export default function NotaFiscal() {
 						<i className="bi-search"></i>
 					</ButtonTeste>
 				</div>
-				{/* {Pedidos} */}
+				{Pedidos}
 			</div>
-            <Button
+			</Nav>
+			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
 				link={"#"}
@@ -95,12 +102,16 @@ export default function NotaFiscal() {
 	);
 }
 
-// export async function getStaticProps() {
-// 	const
-	
-// 	return {
-// 		props: {
-// 			pedidos
-// 		}
-// 	}
-// }
+export async function getStaticProps() {
+	const pedidos = await fetch(
+		"https://xstoke.vercel.app/api/listaPedidosVendasMiddleware"
+	);
+	const pedidosJson = await pedidos.json();
+
+	return {
+		props: {
+			pedidosJson,
+		},
+		revalidate: 1,
+	};
+}
