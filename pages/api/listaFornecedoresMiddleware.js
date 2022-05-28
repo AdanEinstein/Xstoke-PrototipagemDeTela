@@ -1,4 +1,4 @@
-const listaFornecedoresMiddleware = async (request, response) => {
+async function listaFornecedoresMiddleware(request, response){
     const listaFornecedores = await fetch('https://jsonplaceholder.typicode.com/users')
     const listaFornecedoresJson = await listaFornecedores.json()
 
