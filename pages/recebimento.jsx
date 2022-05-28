@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Nav from "../components/personalizados/Nav";
 import Button from "../components/Button";
-import Input from "../components/Input";
 
 export default function Recebimento() {
 	return (

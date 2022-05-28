@@ -165,7 +165,7 @@ export default function ListaProdutos(props) {
 			<Button
 				style={{ top: 10, left: 10 }}
 				classe={"btn-danger"}
-				link={"/lista_fornecedores"}
+				link={"/pedido_venda"}
 			>
 				Voltar
 			</Button>
