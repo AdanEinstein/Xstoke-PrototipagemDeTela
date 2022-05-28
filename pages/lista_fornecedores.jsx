@@ -1,5 +1,7 @@
 import Button from "../components/Button";
+import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
+import Input from "../components/Input";
 import Layout from "../components/Layout";
 import Nav from "../components/personalizados/Nav";
 
