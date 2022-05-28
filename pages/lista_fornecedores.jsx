@@ -71,7 +71,7 @@ export default function ListaFornecedores() {
 						<i className="bi-search"></i>
 					</ButtonTeste>
 				</div>
-				{Fornecedores}
+				{/* {Fornecedores} */}
 			</div>
 			<Button
 				style={{ top: 10, right: 10 }}
