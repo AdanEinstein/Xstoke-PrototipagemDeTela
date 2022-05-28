@@ -1,48 +1,54 @@
+import { useState } from "react"
 import Button from "../components/Button";
 import ButtonTeste from "../components/ButtonTeste";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
 import Nav from "../components/personalizados/Nav";
+import Table from "../components/Table";
 
-export default function ListaFornecedores() {
-	// const [fornecedores, setFornecedores] = useState(props.listaFornecedoresJson);
-    // const cabecalho = ["CNPJ", "Razão Social", "Logradouro", "Cidade", "Ações"];
+export default function ListaFornecedores(props) {
+	const [fornecedores, setFornecedores] = useState(
+		props.listaFornecedoresJson
+	);
+	const cabecalho = ["CNPJ", "Razão Social", "Logradouro", "Cidade", "Ações"];
 
-	// const Fornecedores = (
-	// 	<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
-	// 		{fornecedores.map((fornecedor) => {
-	// 			return (
-	// 				<tr key={fornecedor.id}>
-	// 					<td className="text-nowrap">
-	// 						{fornecedor.address.zipcode}
-	// 					</td>
-	// 					<td className="text-center">{fornecedor.company.name}</td>
-	// 					<td className="text-center d-md-table-cell d-none">
-	// 						{fornecedor.address.street}
-	// 					</td>
-	// 					<td className="text-center d-md-table-cell d-none">
-	// 						{fornecedor.address.city}
-	// 					</td>
-	// 					<td className="text-center">
-	// 						<ButtonTeste
-	// 							classe={"btn btn-sm btn-warning mx-1"}
-	// 							alerta="Editando"
-	// 						>
-	// 							<i className="bi-pencil-square"></i>
-	// 						</ButtonTeste>
-	// 						<ButtonTeste
-	// 							classe={"btn btn-sm btn-danger"}
-	// 							alerta="Deletando"
-	// 						>
-	// 							<i className="bi-trash3-fill"></i>
-	// 						</ButtonTeste>
-	// 					</td>
-	// 				</tr>
-	// 			);
-	// 		})}
-	// 	</Table>
-	// );
+	const Fornecedores = (
+		<Table cabecalho={cabecalho} classe={"table-dark table-striped"}>
+			{fornecedores.map((fornecedor) => {
+				return (
+					<tr key={fornecedor.id}>
+						<td className="text-nowrap">
+							{fornecedor.address.zipcode}
+						</td>
+						<td className="text-center">
+							{fornecedor.company.name}
+						</td>
+						<td className="text-center d-md-table-cell d-none">
+							{fornecedor.address.street}
+						</td>
+						<td className="text-center d-md-table-cell d-none">
+							{fornecedor.address.city}
+						</td>
+						<td className="text-center">
+							<ButtonTeste
+								classe={"btn btn-sm btn-warning mx-1"}
+								alerta="Editando"
+							>
+								<i className="bi-pencil-square"></i>
+							</ButtonTeste>
+							<ButtonTeste
+								classe={"btn btn-sm btn-danger"}
+								alerta="Deletando"
+							>
+								<i className="bi-trash3-fill"></i>
+							</ButtonTeste>
+						</td>
+					</tr>
+				);
+			})}
+		</Table>
+	);
 
 	return (
 		<Layout titulo={"Lista de Fornecedores"} titulinho={"Fornecedores"}>
@@ -73,12 +79,12 @@ export default function ListaFornecedores() {
 						<i className="bi-search"></i>
 					</ButtonTeste>
 				</div>
-				{/* {Fornecedores} */}
+				{Fornecedores}
 			</div>
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"/pedido_venda"}
+				link={"/nota_fiscal"}
 			>
 				Avançar
 			</Button>
@@ -93,12 +99,15 @@ export default function ListaFornecedores() {
 	);
 }
 
-// export async function getStaticProps(){
-    
-    
-//     return {
-//         props: {
-//             listaFornecedoresJson
-//         }
-//     }
-// }
+export async function getStaticProps() {
+	const listaFornecedores = await fetch(
+		"https://xstoke.vercel.app/api/listaFornecedoresMiddleware"
+	);
+	const listaFornecedoresJson = await listaFornecedores.json();
+
+	return {
+		props: {
+			listaFornecedoresJson,
+		},
+	};
+}
