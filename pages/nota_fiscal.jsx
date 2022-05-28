@@ -94,7 +94,7 @@ export default function NotaFiscal(props) {
 			<Button
 				style={{ top: 10, left: 10 }}
 				classe={"btn-danger"}
-				link={"/lista_clientes"}
+				link={"/lista_fornecedores"}
 			>
 				Voltar
 			</Button>

@@ -2,11 +2,12 @@ import { createContext, useContext, useState } from "react";
 
 const LinksContext = createContext([
 	{ value: "Home" },
-	{ value: "Cadastro Clientes" },
+	{ value: "Credenciamento" },
 	{ value: "Cadastro Produtos" },
 	{ value: "Pedido Venda" },
 	{ value: "Lista Produtos" },
 	{ value: "Lista Clientes" },
+	{ value: "Lista Fornecedores" },
 	{ value: "Nota Fiscal" },
 ]);
 

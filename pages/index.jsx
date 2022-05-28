@@ -49,7 +49,7 @@ export default function Home() {
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"clientes"}
+				link={"credenciamento"}
 			>
 				Avançar
 			</Button>

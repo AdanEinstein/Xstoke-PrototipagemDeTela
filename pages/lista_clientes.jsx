@@ -86,7 +86,7 @@ export default function ListaClientes(props) {
 			<Button
 				style={{ top: 10, right: 10 }}
 				classe={"btn-success"}
-				link={"/nota_fiscal"}
+				link={"/lista_fornecedores"}
 			>
 				Avançar
 			</Button>

@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
 import Nav from "../components/personalizados/Nav";
-import SelectPer from "../components/personalizados/Select";
+import SelectProd from "../components/personalizados/SelectProd";
 import Select from "../components/Select";
 import TipoProdutoContext from "../contexts/TipoProdutoContext";
 import useLinks from "../providers/LinksProvider";
@@ -61,11 +61,12 @@ export default function Produto() {
 						Cadastre seus produtos aqui!
 					</h2>
 					<hr className="text-white" />
-					<SelectPer
+					<SelectProd
 						label="Tipo do produto"
 						inicial="Selecione o tipo MP ou PA"
 						options={options}
-					></SelectPer>
+					></SelectProd>
+					{!isPA && (<Input label="CNPJ do Fornecedor" campo="fornecedor"></Input>)}
 					<Input label="Descrição" campo="descricao"></Input>
 					{isPA ? (
 						<>
@@ -160,7 +161,7 @@ export default function Produto() {
 			<Button
 				style={{ top: 10, left: 10 }}
 				classe={"btn-danger"}
-				link={"/clientes"}
+				link={"/credenciamento"}
 			>
 				Voltar
 			</Button>
