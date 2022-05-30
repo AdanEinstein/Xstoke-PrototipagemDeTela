@@ -36,6 +36,12 @@ export default function NotaFiscal(props) {
 								>
 									Emitir <i className="bi-info-circle"></i>
 								</ButtonTeste>
+							) : pedido.cliente < 30 ? (
+								<ButtonTeste
+									classe={"btn btn-sm btn-secondary w-100 mx-1"}
+								>
+									Empenhado <i className="bi-hourglass-split"></i>
+								</ButtonTeste>
 							) : (
 								<ButtonTeste
 									classe={"btn btn-sm btn-primary w-100 mx-1"}
